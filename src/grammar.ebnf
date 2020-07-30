@@ -1,0 +1,15 @@
+syntax = expr;
+
+expr=term, expr1;
+expr1=("+"|"-"),term,expr1|;
+term=factor,term1;
+term1=("*"|"/"),factor,term1|;
+factor="(", expr , ")" |float|function|"i";
+
+function = ("phi(", posint, ")")|(("sum"|"prod"), int, "to", int, "(",expr,")")|("gcD(",posint,",",posint,")");
+
+nonzero = "1"|"2"|"3"|"4"|"5"|"6"|"7"|"8"|"9";
+digit = "0"|nonzero;
+posint = nonzero, {digit};
+int = (["-"], posint)|"0";
+float = int, [".", digit, {digit}];
